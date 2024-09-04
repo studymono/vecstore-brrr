@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Environment variables
+.env
+
+# Python
+__pycache__
