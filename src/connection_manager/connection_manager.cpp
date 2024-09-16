@@ -1,8 +1,19 @@
 #include <netinet/in.h>
+#include <thread>
 #include "connection_manager.h"
 #include "../logger/logger.h"
 
 using namespace std;
+
+void handle_connection(int client_socket)
+{
+    char buffer[1024] = {0};
+    while (recv(client_socket, buffer, sizeof(buffer), 0))
+    {
+        cout << "Message from client: " << buffer << endl;
+        send(client_socket, "hello", 6, 0);
+    }
+}
 
 ConnectionManager::ConnectionManager(int port) : port_(port)
 {
@@ -21,12 +32,12 @@ int ConnectionManager::Start()
     // TODO: Have a way to use a command line argument to set whether a port should be reusable
     // This is a helpful thing to have in production. In fact, it might be more useful to have
     // this being off as a default and then choose to turn it on in dev.
-	int reuse = 1;
-	if (setsockopt(server_socket_, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse)) < 0)
-	{
-		logger << "SO_REUSEADDR failed: " << endl;
+    int reuse = 1;
+    if (setsockopt(server_socket_, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse)) < 0)
+    {
+        logger << "SO_REUSEADDR failed: " << endl;
         return -1;
-	}
+    }
 
     sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
@@ -46,11 +57,12 @@ int ConnectionManager::Start()
     };
 
     logger << "VecStore is listening on port: " << port_ << endl;
-    int clientSocket = accept(server_socket_, nullptr, nullptr);
-
-    char buffer[1024] = {0};
-    recv(clientSocket, buffer, sizeof(buffer), 0);
-    cout << "Message from client: " << buffer << endl;
+    int client_socket;
+    while ((client_socket = accept(server_socket_, nullptr, nullptr)) != -1)
+    {
+        std::thread connection_handler_thread(handle_connection, client_socket);
+        connection_handler_thread.detach();
+    }
 
     return 0;
 }
