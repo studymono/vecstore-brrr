@@ -5,6 +5,7 @@ class Client
 {
 private:
     int port_;
+    int serverSocket_;
 
 public:
     Client(int port);
@@ -23,7 +24,10 @@ public:
     */
     ConnectionManager(int port);
 
-    void Start();
+    /*
+    Returns -1 if an error occurs when the server is being launched.
+    */
+    int Start();
     void Stop();
 };
 
