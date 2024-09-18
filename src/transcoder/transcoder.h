@@ -20,57 +20,57 @@ private:
     vector<vector<double>> vectors_;
 
 public:
-    string getCommand() const { return command_; }
-    Request &setCommand(string newCommand)
+    string get_command() const { return command_; }
+    Request &set_command(string newCommand)
     {
         command_ = newCommand;
         return *this;
     }
 
-    string getModifier() const { return modifier_; }
-    Request &setModifier(string newModifier)
+    string get_modifier() const { return modifier_; }
+    Request &set_modifier(string newModifier)
     {
         modifier_ = newModifier;
         return *this;
     }
 
-    int getStatus() const { return status_; }
-    Request &setStatus(int newStatus)
+    int get_status() const { return status_; }
+    Request &set_status(int newStatus)
     {
         status_ = newStatus;
         return *this;
     }
 
-    int getVCount() const { return vcount_; }
-    Request &setVCount(int newVCount)
+    int get_vcount() const { return vcount_; }
+    Request &set_vcount(int newVCount)
     {
         vcount_ = newVCount;
         return *this;
     }
 
-    int getVSize() const { return vsize_; }
-    Request &setVSize(int newVSize)
+    int get_vsize() const { return vsize_; }
+    Request &set_vsize(int newVSize)
     {
         vsize_ = newVSize;
         return *this;
     }
 
-    int getTopK() const { return topk_; }
-    Request &setTopK(int newTopK)
+    int get_topk() const { return topk_; }
+    Request &set_topk(int newTopK)
     {
         topk_ = newTopK;
         return *this;
     }
 
-    vector<int> setKeys() const { return keys_; }
-    Request &setKeys(vector<int> newKeys)
+    vector<int> get_keys() const { return keys_; }
+    Request &set_keys(vector<int> newKeys)
     {
         keys_ = newKeys;
         return *this;
     }
 
-    vector<vector<double>> getVectors() const { return vectors_; }
-    Request &setVectors(vector<vector<double>> newVectors)
+    vector<vector<double>> get_vectors() const { return vectors_; }
+    Request &set_vectors(vector<vector<double>> newVectors)
     {
         vectors_ = newVectors;
         return *this;
