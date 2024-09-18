@@ -44,7 +44,7 @@ int ConnectionManager::Start()
     serverAddress.sin_port = htons(port_);
     serverAddress.sin_addr.s_addr = INADDR_ANY;
 
-    if (bind(server_socket_, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) == -1)
+    if (::bind(server_socket_, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) == -1)
     {
         logger << "An error occured when binding to port " << port_ << endl;
         return -1;

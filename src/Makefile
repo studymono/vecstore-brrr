@@ -2,7 +2,7 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -Wall -g -pthread
+CXXFLAGS = -Wall -g -pthread -std=c++11
 
 # Target executable
 TARGET = main.out
