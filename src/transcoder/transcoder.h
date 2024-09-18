@@ -77,4 +77,18 @@ public:
     }
 };
 
+class Transcoder
+{
+public:
+    /*
+    Receives a string and converts the string into a Request object.
+    */
+    static Request Parse(string request_string);
+
+    /*
+    Accepts a Request object and converts the object into a request string.
+    */
+    static string Encode(Request req);
+};
+
 #endif // VECSTORE_TRANSCODER_H
