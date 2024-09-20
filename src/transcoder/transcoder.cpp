@@ -161,3 +161,43 @@ string Transcoder::Encode(Request req)
 
     return encoded_request;
 }
+
+bool Transcoder::Validate(Request req)
+{
+    // a command must be specified
+    if (req.get_command() == "")
+        return false;
+
+    // if keys_ is defined, then vcount_ must be defined and keys must have exactly
+    // as many items as vsize_
+    if (req.get_keys().size() > 0)
+    {
+        int v_count = req.get_vcount();
+        if (v_count != req.get_keys().size())
+            return false;
+    }
+
+    // if vectors_ is defined, then vsize_ and vcount_ must be defined, there must be
+    // exactly vcount_ vectors and each vector must have exactly vsize_ items
+    if (req.get_vectors().size() > 0)
+    {
+        int v_count = req.get_vcount();
+        if (v_count != req.get_vectors().size())
+            return false;
+
+        int v_size = req.get_vsize();
+        for (auto v : req.get_vectors())
+            if (v.size() != v_size)
+                return false;
+    }
+
+    // the command must be one of the valid commands
+
+    // if the command is ERR, the modifier must be GENERIC or another valid command
+
+    // if the command is ERR, a status must be defined
+
+    // If the command is DONE, the modifier must be a command
+
+    return true;
+}

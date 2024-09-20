@@ -90,6 +90,11 @@ public:
     Accepts a Request object and converts the object into a request string.
     */
     static string Encode(Request req);
+
+    /*
+    Returns true if the Request object is a valid request and false otherwise.
+    */
+    static bool Validate(Request req);
 };
 
 #endif // VECSTORE_TRANSCODER_H
