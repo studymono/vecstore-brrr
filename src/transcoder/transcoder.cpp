@@ -29,7 +29,7 @@ vector<string> split_on_whitespaces(string str)
     return words;
 }
 
-void ParseRecurser(const vector<string> &phrases, Request parsed_request, int pos)
+void ParseRecurser(const vector<string> &phrases, Request &parsed_request, int pos)
 {
     // return if pos is out of bounds
     if (pos >= phrases.size())
@@ -43,8 +43,16 @@ void ParseRecurser(const vector<string> &phrases, Request parsed_request, int po
     // decide how to proceed with parsing based on what flag was passed
     if (phrases[pos] == "--vsize")
         ParseVSize(phrases, parsed_request, pos);
+    else if (phrases[pos] == "--status")
+        ParseStatus(phrases, parsed_request, pos);
+    else if (phrases[pos] == "--vcount")
+        ParseVCount(phrases, parsed_request, pos);
+    else if (phrases[pos] == "--topk")
+        ParseTopK(phrases, parsed_request, pos);
+    else
+        throw std::invalid_argument("An unsupported flag was sent in this request.");
 
-        ParseRecurser(phrases, parsed_request, pos);
+    ParseRecurser(phrases, parsed_request, pos);
 }
 
 /*
