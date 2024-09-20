@@ -49,6 +49,10 @@ void ParseRecurser(const vector<string> &phrases, Request &parsed_request, int p
         ParseVCount(phrases, parsed_request, pos);
     else if (phrases[pos] == "--topk")
         ParseTopK(phrases, parsed_request, pos);
+    else if (phrases[pos] == "--keys")
+        ParseKeys(phrases, parsed_request, pos);
+    else if (phrases[pos] == "--vector")
+        ParseVector(phrases, parsed_request, pos);
     else
         throw std::invalid_argument("An unsupported flag was sent in this request.");
 

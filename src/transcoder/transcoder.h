@@ -70,6 +70,7 @@ public:
     }
 
     vector<vector<double>> get_vectors() const { return vectors_; }
+    vector<vector<double>> &get_vectors_ref() { return vectors_; }
     Request &set_vectors(vector<vector<double>> newVectors)
     {
         vectors_ = newVectors;
