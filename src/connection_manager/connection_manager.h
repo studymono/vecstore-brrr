@@ -1,15 +1,7 @@
 #ifndef CONNECTION_MANAGER_H
 #define CONNECTION_MANAGER_H
 
-class Client
-{
-private:
-    int port_;
-    int serverSocket_;
-
-public:
-    Client(int port);
-};
+#include "connection_manager_shared.h"
 
 class ConnectionManager
 {

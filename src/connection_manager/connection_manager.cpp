@@ -2,17 +2,28 @@
 #include <thread>
 #include "connection_manager.h"
 #include "../logger/logger.h"
+#include "../execution_router/execution_router.h"
 
 using namespace std;
 
 void handle_connection(int client_socket)
 {
     char buffer[1024] = {0};
-    while (recv(client_socket, buffer, sizeof(buffer), 0))
+    Client client{client_socket};
+    int length;
+
+    while ((length = recv(client_socket, buffer, sizeof(buffer) - 1, 0)))
     {
-        cout << "Message from client: " << buffer << endl;
-        send(client_socket, "hello", 6, 0);
+        // null terminate the request
+        buffer[length] = 0;
+        logger << "Message from client: " << buffer << endl;
+        execution_router.Handle(buffer, client);
     }
+}
+
+int Client::Send(string message)
+{
+    return send(this->client_socket, message.c_str(), message.size(), 0);
 }
 
 ConnectionManager::ConnectionManager(int port) : port_(port)
