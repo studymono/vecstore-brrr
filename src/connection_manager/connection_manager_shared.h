@@ -18,7 +18,7 @@ public:
     /*
     The Send function handles adding line terminators at the end of strings.
 
-    Returns 1 if the message gets sent successfully. Returns 0 otherwise.
+    Returns a non-zero value if the message gets sent successfully. Returns -1 otherwise.
     */
     int Send(std::string message);
 };

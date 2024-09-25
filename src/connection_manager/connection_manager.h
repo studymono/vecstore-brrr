@@ -1,6 +1,8 @@
 #ifndef CONNECTION_MANAGER_H
 #define CONNECTION_MANAGER_H
 
+#include "connection_manager_shared.h"
+
 class ConnectionManager
 {
 private:
