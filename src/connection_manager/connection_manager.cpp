@@ -10,11 +10,13 @@ void handle_connection(int client_socket)
 {
     char buffer[1024] = {0};
     Client client{client_socket};
+    int length;
 
-    while (recv(client_socket, buffer, sizeof(buffer), 0))
+    while ((length = recv(client_socket, buffer, sizeof(buffer) - 1, 0)))
     {
-        // TODO: Make use of line terminators at the end of requests
-        cout << "Message from client: " << buffer << endl;
+        // null terminate the request
+        buffer[length] = 0;
+        logger << "Message from client: " << buffer << endl;
         execution_router.Handle(buffer, client);
     }
 }
