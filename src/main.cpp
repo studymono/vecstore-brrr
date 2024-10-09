@@ -1,6 +1,7 @@
 #include "connection_manager/connection_manager.h"
 #include "execution_router/execution_router.h"
 #include "execution_router/executors/executors.h"
+#include "injector.h"
 
 ExecutionRouter execution_router{};
 
