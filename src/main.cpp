@@ -1,11 +1,15 @@
 #include "connection_manager/connection_manager.h"
 #include "execution_router/execution_router.h"
 #include "execution_router/executors/executors.h"
+#include "injector.h"
 
 ExecutionRouter execution_router{};
 
-int main()
+int main(int argc, char *argv[])
 {
+    Injector injector;
+    injector.getConfigManager().LoadConfigsFromCommandLineFlags(argc, argv);
+
     // TODO: Consider moving the binding of executors elsewhere.
     execution_router.Bind("PING", HandlePing);
     // TODO: Allow for the setting of the port from a flag.
