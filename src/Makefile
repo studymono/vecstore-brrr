@@ -28,7 +28,7 @@ $(TARGET): $(OBJS)
 
 # Rule to run the executable
 run: $(TARGET)
-	./$(TARGET)
+	./$(TARGET) --vsize 16
 
 # Clean rule to remove generated files
 clean:
