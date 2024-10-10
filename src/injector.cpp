@@ -1,5 +1,11 @@
 #include "injector.h";
 
-ConfigManager& Injector::getConfigManager() {
+ConfigManager &Injector::getConfigManager()
+{
     return configManager;
+}
+
+Store &Injector::getStore()
+{
+    return store;
 }
