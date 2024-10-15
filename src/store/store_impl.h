@@ -5,10 +5,15 @@
 
 class StoreImpl : public Store
 {
+private:
+    int vSize;
+    std::vector<std::vector<double>> vectors;
+
 public:
     virtual bool Delete(int id) override;
-    virtual bool Write(double v[]) override;
-    virtual double *Query(double v[]) override;
+    virtual bool Write(std::vector<double> v) override;
+    virtual std::vector<double> Query(std::vector<double> v) override;
+    StoreImpl();
 };
 
 #endif // VECTORE_STORE_IMPL
