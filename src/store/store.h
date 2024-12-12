@@ -7,7 +7,7 @@ class Store
 {
 public:
     virtual bool Delete(int id) = 0;
-    virtual bool Write(std::vector<double> v) = 0;
+    virtual int Write(std::vector<double> v) = 0;
     virtual std::vector<double> Query(std::vector<double> v) = 0;
 };
 
