@@ -20,4 +20,6 @@ public:
     Store &getStore();
 };
 
+extern Injector injector;
+
 #endif // VECSTORE_INJECTOR

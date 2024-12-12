@@ -1,4 +1,4 @@
-#include "injector.h";
+#include "injector.h"
 
 ConfigManager &Injector::getConfigManager()
 {
