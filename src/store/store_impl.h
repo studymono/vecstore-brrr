@@ -7,12 +7,12 @@ class StoreImpl : public Store
 {
 private:
     std::vector<std::vector<double>> vectors;
-    int size;
+    int storedVectorsCount;
 
 public:
     virtual bool Delete(int id) override;
     virtual int Write(std::vector<double> v) override;
-    virtual std::vector<double> Query(std::vector<double> v) override;
+    virtual std::vector<StoreQueryResponse *> Query(std::vector<double> v) override;
     StoreImpl();
 };
 
